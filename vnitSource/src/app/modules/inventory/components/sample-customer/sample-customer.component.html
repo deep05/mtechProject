@@ -1,0 +1,215 @@
+<div class="card card-default">
+    <br>
+    <form name="form" #f="ngForm">
+
+        <span *ngIf="searchFromFilter !== true">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <fieldset class="scheduler-border col-md-12">
+                        <legend class="scheduler-border"> Sample Customer:
+                            <p id="demo"></p>
+                        </legend>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>
+                                        Sample Customer Code
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control input-sm" id="scode" name="scode"
+                                            [(ngModel)]="model.scode" #scode="ngModel" placeholder="Sample Customer Code"
+                                            maxlength="20" pTooltip="{{model.scode}}"
+                                            tooltipPosition="bottom" [disabled]="true">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>
+                                        Sample Customer Name
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm" id="sname" name="sname"
+                                            [(ngModel)]="model.sname" #sname="ngModel" placeholder="Sample Customer Name"
+                                            maxlength="20" pTooltip="{{model.sname}}"
+                                            tooltipPosition="bottom">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label style="margin-top:18px;"></label>
+                                    <div class="form-group" style="text-align: center;">
+                                        <button pButton pRipple type="button"
+                                            label="Add" (click)="addModelOneArray()"
+                                            class="save_button p-button-success"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+    
+            <div class="row" *ngIf="modelOneArray.length !== 0">
+                <div class="col-md-6 offset-md-3">
+                    <fieldset class="scheduler-border col-md-12">
+                        <legend class="scheduler-border">Sample Customer Details:</legend>
+                        <p-table #dt [value]="modelOneArray" scrollHeight="300px" [scrollable]="true"
+                            [style]="{width:'auto'}"
+                            styleClass="p-datatable-responsive-demo p-datatable-striped custom-class">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr style="font-size: 10px;">
+                                    <th pResizableColumn>Sr.no</th>
+                                    <th pResizableColumn>Sample Customer Code</th>
+                                    <th pResizableColumn>Sample Customer Name</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-modelOneArray let-i="rowIndex">
+                                <tr *ngIf="modelOneArray.flag !== 'delete'" style="font-size: 10px; font-weight: bold;">
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Sr.no</span>
+                                        {{i+1}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Sample Customer Code</span>
+                                        {{modelOneArray.scode}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Sample Customer Name</span>
+                                        {{modelOneArray.sname}}
+                                    </td>
+                                    <td>
+                                        <button pButton pRipple icon="pi pi-user-edit"
+                                            class="p-button-rounded p-button-success"
+                                            (click)="viewRowData(modelOneArray,i);" pTooltip="Edit"
+                                            tooltipPosition="bottom">
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning p-mr-2" data-toggle="modal"
+                                            (click)="deleteRowData(modelOneArray,i)" pTooltip="Delete"
+                                            tooltipPosition="bottom">
+                                        </button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </fieldset>
+                </div>
+            </div>
+        </span>
+    </form>
+
+
+     <!-- LISTING TABLE -->
+    <div class="row" *ngIf="searchFromFilter === true">
+        <div class="col-md-6 offset-md-3">
+            <fieldset class="scheduler-border col-md-12">
+                <legend class="scheduler-border">Sample Customer Details:</legend>
+                <p-table #dt [value]="modelList" scrollHeight="300px" [scrollable]="true"
+                    [style]="{width:'auto'}"
+                    styleClass="p-datatable-responsive-demo p-datatable-striped custom-class">
+                    <ng-template pTemplate="caption">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <tr>
+                                        <th pResizableColumn>
+                                            <span class="p-float-label" style="margin-right: 10px;">
+                                                <div class="form-group">
+                                                    <!-- <i class="pi pi-search"></i> -->
+                                                    <input type="text" class="form-control" pInputText id="search"
+                                                        name="search" [(ngModel)]="filters"
+                                                        (input)="searchByFilter()">
+                                                    <label style="margin-left: 20px;" for="search"><span
+                                                            style="font-size: 10px;">Sample Customer Name</span></label>
+                                                </div>
+                                            </span>
+                                        </th>
+                                        <th style="margin-top: 2px; margin-left: 12px; position: absolute;" pResizableColumn>
+                                            <button pButton pRipple icon="pi pi-refresh"
+                                                class="p-button-rounded p-button-primary" (click)="filters = ''; searchByFilter()"
+                                                pTooltip="Refresh"
+                                                tooltipPosition="bottom">
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr style="font-size: 10px;">
+                            <th pResizableColumn>Sr.no</th>
+                            <th pResizableColumn>Sample Customer Code</th>
+                            <th pResizableColumn>Sample Customer Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-modelOneArray let-i="rowIndex">
+                        <tr *ngIf="modelOneArray.flag !== 'delete'" style="font-size: 10px; font-weight: bold;">
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Sr.no</span>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Sample Customer Code</span>
+                                {{modelOneArray.scode}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Sample Customer Name</span>
+                                {{modelOneArray.sname}}
+                            </td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-user-edit"
+                                    class="p-button-rounded p-button-success"
+                                    (click)="viewRowData(modelOneArray,i); searchFromFilter = false" pTooltip="Edit"
+                                    tooltipPosition="bottom">
+                                </button>
+                            </td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning p-mr-2" data-toggle="modal"
+                                    data-toggle="modal" data-target="#confirmDeleteDialog" (click)="onDelete(modelOneArray,i)" pTooltip="Delete"
+                                    tooltipPosition="bottom">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </fieldset>
+        </div>
+    </div>
+
+
+        <!-- SAVE CANCEL BUTTON -->
+        <div class="container-fluid  bg-white" style="position: fixed;left: -1px;bottom: 32px;">
+            <div class="row" style="background-color: #e4f2ef;">
+                <div class="col-lg-12 mb-2 mt-2" align="right" style="background-color: #e4f2ef;">
+                    <button style="margin-left: 5px;" pButton pRipple type="button" label="Save" (click)="onSave()"
+                        class="cancel_button p-button-success p-ripple p-button p-component" *ngIf="searchFromFilter !== true"></button>
+        
+                    <button style="margin-left: 5px;" pButton pRipple type="button" [label]="searchFromFilter === true ? 'Cancel':'Show All'"  (click)="onCancel()"  class="cancel_button p-button-danger p-ripple p-button p-component"></button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!-- Confirm Delete Dialog    data-toggle="modal" data-target="#confirmDeleteDialog"-->
+<div class="modal fade" id="confirmDeleteDialog" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h6>Do you really want to delete!</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="confirmDelete()">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

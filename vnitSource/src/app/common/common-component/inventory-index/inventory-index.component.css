@@ -1,0 +1,192 @@
+:host ::ng-deep .p-card { 
+    border: 0px solid rgba(0,0,0,.125);border-radius: 12px;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-card .p-card-title {
+    font-size: 1rem;
+    color: #4CA07A;
+
+}
+.card
+{
+    border: 0px solid rgba(0,0,0,.125);border-radius: 12px;
+    box-shadow: none;
+}
+.details_span .details
+{
+text-align: left;
+font: normal normal bold 12px Proxima Nova;
+letter-spacing: 1.8px;
+color: #4CA07A;
+opacity: 1;
+}
+.details_span span
+{
+	font-size: 10.5px
+}
+.appoint_span .details
+{
+text-align: center;
+font: normal normal bold 12px/24px Proxima Nova;
+letter-spacing: 0.7px;
+color: #040E28;
+text-transform: uppercase;
+opacity: 1;
+}
+
+.dash .heading_span
+{
+	text-align: left;
+font: normal normal bold 14px/24px Proxima Nova;
+letter-spacing: 1.4px;
+color: #646D82;
+text-transform: uppercase;
+opacity: 1;
+}
+
+
+#patient_head
+{
+text-align: left;
+font: normal normal bold 12px/24px Proxima Nova;
+letter-spacing: 1.4px;
+color: #4CA07A;
+opacity: 1;
+}
+
+#patient_head tr th
+{
+	 border-top-style:hidden;
+	 border-bottom-style:hidden;
+}
+
+.trsize tr td
+{
+	font-size: 12px;
+}
+
+
+
+
+.btn-success {
+    color: #fff;
+    background-color: #4CA07A;
+    border-color: #4CA07A;
+}
+
+.btn-outline-success {
+    color: #4CA07A;
+    border-color: #4CA07A;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #4CA07A;
+    border-color: #4CA07A;
+}
+
+.nav-item
+{
+font: normal normal 600 14px/24px Proxima Nova;
+letter-spacing: 1.2px;
+opacity: 1;
+
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+ color: #009DFF;
+ border-bottom: 2px solid #009DFF;
+
+}
+
+.navbar-brand.nav_2
+{
+    color: #4CA07A;font-size: 15px
+}
+
+
+.report
+{
+    text-align: right;
+font: normal normal normal 13px/24px Proxima Nova;
+letter-spacing: 1.4px;
+color: #4CA07A;
+text-transform: uppercase;
+opacity: 1;
+}
+
+#patient_head
+{
+text-align: left;
+font: normal normal bold 12px/24px Proxima Nova;
+letter-spacing: 1.4px;
+color: #4CA07A;
+opacity: 1;
+}
+
+#patient_head tr th
+{
+     border-top-style:hidden;
+     border-bottom-style:hidden;
+}
+
+.trsize tr td
+{
+    font-size: 11px;
+}
+
+
+.appoint_head tr th
+{
+    text-align: left;
+font: normal normal bold 11px/24px Proxima Nova;
+letter-spacing: 0px;
+color: #044328;
+opacity: 1;
+}
+
+#head_button
+{
+    border: 1px solid #999999;border-radius: 6px;opacity: 1;
+}
+#head_button span
+{
+text-align: center;
+font: normal normal 600 11px Proxima Nova;
+letter-spacing: 0.13px;
+opacity: 1;
+}
+
+.navbar_2
+{
+    background: #EAFAF3 0% 0% no-repeat padding-box;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+    .navbar_2 span.nav_2 {
+    font-size: 10px
+  }
+  .navbar-brand.navbar_2 .nab {
+    font-size: 10px
+  }
+}
+
+.navbar_2 .nab
+{
+    font-size: 22px
+}
+
+.navbar_2_btn
+{
+    text-align: center;
+font: normal normal normal 12px/24px Proxima Nova;
+letter-spacing: 0.13px;
+opacity: 1;
+}
+
+.card
+{
+    border: 0px solid rgba(0,0,0,.125);border-radius: 12px;
+}

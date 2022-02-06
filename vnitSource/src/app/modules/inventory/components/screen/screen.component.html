@@ -1,0 +1,413 @@
+<div class="card card-default">
+    <br>
+    
+    <form name="form" #f="ngForm">
+
+        <span *ngIf="searchFromFilter !== true">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <fieldset class="scheduler-border col-md-12">
+                        <legend class="scheduler-border">
+                            <span>Screen Master:</span>
+                        </legend>
+                        
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>
+                                    Screen Id
+                                    <span style="color: red;">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <input type="number" class="form-control input-sm" id="screenid" name="screenid"
+                                        [(ngModel)]="model.screenid" #screenid="ngModel" placeholder="Screen ID "
+                                        maxlength="20" pTooltip="{{model.screenid}}" tooltipPosition="bottom"
+                                        [disabled]="true">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Screen Purpose
+                                    <span style="color: red;">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-sm" id="screenpurpose"
+                                        name="screenpurpose" [(ngModel)]="model.screenpurpose" 
+                                        #screenpurpose="ngModel" placeholder="Screenpurpose " maxlength="20"
+                                        pTooltip="{{model.screenpurpose}}" tooltipPosition="bottom">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Screen Name
+                                    <span style="color: red;">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-sm" id="screenname"
+                                        name="screenname" [(ngModel)]="model.screenname" #screenname="ngModel"
+                                        placeholder="Screenname " maxlength="20" pTooltip="{{model.screenname}}"
+                                        tooltipPosition="bottom">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Screen Type
+                                    <span style="color: red;">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <p-dropdown id="screentype" name="screentype" #billtp="ngModel" [options]="screenTypeList"
+                                        [(ngModel)]="model.screentype"
+                                        placeholder=" Screen Type" optionLabel="name"
+                                         pTooltip="{{model.screentype}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Screen Date
+                                    <span style="color: red;">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <p-calendar [style]="{'width':'100%' ,'height':'40px'}"
+                                        [inputStyle]="{'width':'100%' ,'height':'40px'}" [showIcon]="true"
+                                        id="screendate" name="screendate" [(ngModel)]="model.screendate"
+                                        dateFormat="dd-mm-yy" placeholder="dd-mm-yy" [minDate]="minDate"
+                                        pTooltip="{{model.screendate}}" tooltipPosition="bottom">
+                                    </p-calendar>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    </fieldset>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <fieldset class="scheduler-border col-md-12">
+                        <legend class="scheduler-border">Screen Group Details:</legend>
+                        <p-table [value]="modelTwoArray" [scrollable]="true" [style]="{width:'auto'}" scrollHeight="200px"
+                        styleClass="p-datatable-responsive-demo p-datatable-striped custom-class">
+                            <ng-template pTemplate="caption">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-sm-2 offset-md-10">
+                                            <tr>
+                                                <!-- sanket -->
+                                                <th pResizableColumn>
+                                                    <span class="p-float-label" style="margin-right: 10px;">
+                                                        <div class="form-group" style="text-align: right;">
+                                                            <button pButton pRipple type="button" label="Add" (click)="addRow()"
+                                                            class="save_button p-button-success"></button>
+                                                        </div>
+                                                    </span>
+                                                </th>
+                                            </tr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="colgroup" let-columns>
+                                <colgroup>
+                                    <col style="width:60px">
+                                    <col style="width:80px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                    <col style="width:250px">
+                                </colgroup>
+                            </ng-template>
+                           
+                            <ng-template pTemplate="header" let-columns>
+                                <tr style="font-size: 10px;">
+                                    <th pResizableColumn >Sr.no</th>
+                                    <th pResizableColumn>Group Id<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Group Name<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Database<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Base Table<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Detail Table<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Master Group Name<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Mapping<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Mapping Table<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Record Group Count<span style="color: red;">*</span></th>
+                                    <th pResizableColumn>Basic Layout<span style="color: red;">*</span></th>
+                                    <th style="text-align: center;">Delete</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-modelTwoArray let-i="rowIndex">
+                                <tr *ngIf="modelTwoArray.flag !== 'delete'" style="font-size: 10px; font-weight: bold;">
+                                    <td style="width: 60px;">
+                                        <span style="margin-left: 10px;" class="p-column-title">Sr.no</span>
+                                        {{i+1}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Group Id</span>
+                                        
+                                        <div class="form-group">
+                                            <input type="number" class="form-control input-sm" id="screengroupid{{i}}" name="screengroupid{{i}}"
+                                                [(ngModel)]="modelTwoArray.screengroupid" #screengroupid="ngModel" placeholder="Group Id"
+                                                maxlength="20" pTooltip="{{modelTwoArray.screengroupid}}" tooltipPosition="bottom"
+                                                  disabled="true">
+                                                
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Group Name</span>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-sm" id="gpurpose{{i}}" name="gpurpose{{i}}"
+                                                [(ngModel)]="modelTwoArray.gpurpose" #gpurpose="ngModel" placeholder=" Group Name"
+                                                maxlength="20" pTooltip="{{modelTwoArray.gpurpose}}" tooltipPosition="bottom"
+                                                 >
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Database</span>
+                                        <div class="form-group">
+                                        <p-dropdown id="db{{i}}" name="db{{i}}" #db="ngModel" [options]="booleanList"
+                                        [(ngModel)]="modelTwoArray.db" appendTo="body"
+                                        placeholder="Database" optionLabel="name"
+                                        pTooltip="{{modelTwoArray.db?.code}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                       </p-dropdown>
+                                    
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Base Table</span>
+                                        <div class="form-group">
+                                        <p-dropdown id="basetable{{i}}" name="basetable{{i}}" #basetable="ngModel" [options]="mysqlTableList"
+                                        [(ngModel)]="modelTwoArray.basetable" appendTo="body"
+                                        placeholder="Base Table"  optionLabel="name" pTooltip="{{modelTwoArray.basetable?.code}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                        </p-dropdown>
+                                        </div>
+                                       
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Detail Table</span>
+                                        <div class="form-group">
+                                        <p-dropdown id="detailtable{{i}}" name="detailtable{{i}}" #billtp="ngModel" [options]="booleanList"
+                                        [(ngModel)]="modelTwoArray.detailtable" appendTo="body"
+                                        placeholder="Deatil Table" optionLabel="name"
+                                         pTooltip="{{modelTwoArray.detailtable?.code}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Master Group Name</span>
+                                        
+                                        <div class="form-group">
+                                        <!-- <p-dropdown id="mastergroupname{{i}}" name="mastergroupname{{i}}" #mastergroupname="ngModel" [options]="mastergroupnameList"
+                                        [(ngModel)]="modelTwoArray.mastergroupname" appendTo="body"
+                                        placeholder="Master Group Name" optionLabel="name"
+                                         pTooltip="{{modelTwoArray.mastergroupname?.code}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown> -->
+                                    <input type="text" class="form-control input-sm" id="mastergroupname{{i}}" name="mastergroupname{{i}}"
+                                                [(ngModel)]="modelTwoArray.mastergroupname" #mastergroupname="ngModel" placeholder="Master Group Name"
+                                                maxlength="20" pTooltip="{{modelTwoArray.mastergroupname}}" tooltipPosition="bottom"
+                                                 >
+                                        </div>
+                                    </td>
+                                  
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Mapping</span>
+                                        
+                                        <div class="form-group">
+                                          
+                                        <p-dropdown id="mapping{{i}}" name="mapping{{i}}" #mapping="ngModel" [options]="booleanList"
+                                        [(ngModel)]="modelTwoArray.mapping" appendTo="body"
+                                        placeholder="Mapping" optionLabel="name"
+                                         pTooltip="{{modelTwoArray.mapping?.code}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                   
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Mapping Table</span>
+                                        
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-sm" id="mappingtable{{i}}" name="mappingtable{{i}}"
+                                                [(ngModel)]="modelTwoArray.mappingtable" #mappingtable="ngModel" placeholder="Mapping Table"
+                                                maxlength="20" pTooltip="{{modelTwoArray.mappingtable}}" tooltipPosition="bottom"
+                                                >
+                                        </div>
+                                    </td>
+                                  
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Record Group Count</span>
+                                       
+                                        <div class="form-group">
+                                            <input type="number" class="form-control input-sm" id="recordgroupcount{{i}}" name="recordgroupcount{{i}}"
+                                                [(ngModel)]="modelTwoArray.recordgroupcount" #recordgroupcount="ngModel" placeholder="Record Group Count"
+                                                maxlength="20" pTooltip="{{modelTwoArray.recordgroupcount}}" tooltipPosition="bottom"
+                                            >
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Basic Layout</span>
+                                        
+                                        <div class="form-group">
+                                          
+                                        <p-dropdown id="basiclayout{{i}}" name="basiclayout{{i}}" #basiclayout="ngModel" [options]="basicLayoutList"
+                                        [(ngModel)]="modelTwoArray.basiclayout" appendTo="body"
+                                        placeholder="Layout " optionLabel="name"
+                                         pTooltip="{{modelTwoArray.basiclayout?.code}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    
+                                        </div>
+                                    </td>
+                                    <td style="text-align: center;" >
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning p-mr-2" data-toggle="modal"
+                                            (click)="deleteRowData(modelTwoArray,i)" pTooltip="Delete"
+                                            tooltipPosition="bottom">
+                                        </button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        
+ 
+                    </fieldset>
+                </div>
+            </div>
+        </span>
+    </form>
+
+
+    <!-- LISTING TABLE -->
+    <div class="row" *ngIf="searchFromFilter === true">
+        <div class="col-md-8 offset-md-2">
+            <fieldset class="scheduler-border col-md-12">
+                <legend class="scheduler-border" >Screen Master :</legend>
+                <p-table #dt [value]="modelList" scrollHeight="300px" [scrollable]="true" [style]="{width:'auto'}"
+                    styleClass="p-datatable-responsive-demo p-datatable-striped custom-class">
+                    <ng-template pTemplate="caption">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <tr>
+                                        <th pResizableColumn>
+                                            <span class="p-float-label" style="margin-right: 10px;">
+                                                <div class="form-group">
+                                                    <!-- <i class="pi pi-search"></i> -->
+                                                    <input type="text" class="form-control" pInputText id="search"
+                                                        name="search" [(ngModel)]="filters" (input)="searchByFilter()">
+                                                    <label style="margin-left: 20px;" for="search"><span
+                                                            style="font-size: 10px;">Screen Id</span></label>
+                                                </div>
+                                            </span>
+                                        </th>
+                                        <th style="margin-top: 2px; margin-left: 12px; position: absolute;"
+                                            pResizableColumn>
+                                            <button pButton pRipple icon="pi pi-refresh"
+                                                class="p-button-rounded p-button-primary"
+                                                (click)="filters = ''; searchByFilter()" pTooltip="Refresh"
+                                                tooltipPosition="bottom">
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr style="font-size: 10px;">
+                            <th pResizableColumn>Sr.no</th>
+                            <th pResizableColumn>Screen Id</th>
+                            <th pResizableColumn>Screen Name</th>
+                            <th pResizableColumn>Screen Type</th>
+                            <th pResizableColumn>Screen Purpose</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-modelTwoArray let-i="rowIndex">
+                        <tr *ngIf="modelTwoArray.flag !== 'delete'" style="font-size: 10px; font-weight: bold;">
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Sr.no</span>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Screen Id</span>
+                                {{modelTwoArray.screenid}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Screen Name</span>
+                                {{modelTwoArray.screenname}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Screen Type</span>
+                                {{modelTwoArray.screentype}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Screen Purpose</span>
+                                {{modelTwoArray.screenpurpose}}
+                            </td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-user-edit" class="p-button-rounded p-button-success"
+                                    (click)="editRowData(modelTwoArray,i); searchFromFilter = false" pTooltip="Edit"
+                                    tooltipPosition="bottom">
+                                </button>
+                            </td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning p-mr-2" data-toggle="modal"
+                                    data-toggle="modal" data-target="#confirmDeleteDialog"
+                                    (click)="onDelete(modelTwoArray,i)" pTooltip="Delete" tooltipPosition="bottom">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </fieldset>
+        </div>
+    </div>
+    <!-- SAVE CANCEL BUTTON -->
+    <div class="container-fluid  bg-white" style="position: fixed;left: -1px;bottom: 32px;">
+        <div class="row" style="background-color: #e4f2ef;">
+            <div class="col-lg-12 mb-2 mt-2" align="right" style="background-color: #e4f2ef;">
+                <button style="margin-left: 5px;" pButton pRipple type="button" label="Save" (click)="onSave()"
+                    class="cancel_button p-button-success p-ripple p-button p-component"
+                    *ngIf="searchFromFilter !== true"></button>
+
+                <button style="margin-left: 5px;" pButton pRipple type="button"
+                    [label]="searchFromFilter === true ? 'Cancel':'Show All'" (click)="onCancel()"
+                    class="cancel_button p-button-danger p-ripple p-button p-component"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Confirm Delete Dialog    data-toggle="modal" data-target="#confirmDeleteDialog"-->
+<div class="modal fade" id="confirmDeleteDialog" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h6>Do you really want to delete!</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                    (click)="confirmDelete();">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
