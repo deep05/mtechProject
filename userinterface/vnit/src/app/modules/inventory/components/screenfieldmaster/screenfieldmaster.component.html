@@ -1,0 +1,624 @@
+<div class="card card-default">
+    <br>
+    <form name="form" #f="ngForm">
+
+        <span *ngIf="searchFromFilter !== true">
+            <div class="row">
+                <div class="col-md-12">
+                    <fieldset class="scheduler-border col-md-12">
+                        <legend class="scheduler-border"> Screen Field Master:
+                            <p id="demo"></p>
+                        </legend>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>
+                                        Screen Field ID
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control input-sm" id="screenfieldid" name="screenfieldid"
+                                            [(ngModel)]="model.screenfieldid" #screenfieldid="ngModel" placeholder="Screen Field ID"
+                                            maxlength="20" pTooltip="{{model.screenfieldid}}"
+                                            tooltipPosition="bottom" [disabled]="true">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Screen ID
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-dropdown id="screenid" name="screenid" #screenid="ngModel" [options]="screenIdList"
+                                        [(ngModel)]="model.screenid" appendTo="body"
+                                        placeholder="Screen ID" optionLabel="name"
+                                        pTooltip="{{model.screenid}}" (onChange)="getScreengroupIdlist(model.screenid['code'])"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Screen Group ID
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-dropdown id="screengroupid" name="screengroupid" #screengroupid="ngModel" [options]="screenGroupIdList"
+                                        [(ngModel)]="model.screengroupid" appendTo="body"
+                                        placeholder="Screen Group ID" optionLabel="name"
+                                        pTooltip="{{model.screengroupid}}"  (onChange)="getBasetablecolumn(model.screengroupid['code'])"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Label
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm" id="label" name="label"
+                                            [(ngModel)]="model.label" #label="ngModel" placeholder="Label"
+                                            maxlength="200" pTooltip="{{model.label}}"
+                                            tooltipPosition="bottom" >
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Field Name
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm" id="field_name"
+                                        name="field_name" [(ngModel)]="model.field_name" 
+                                        #field_name="ngModel" placeholder="Field Name " maxlength="200"
+                                        pTooltip="{{model.field_name}}" tooltipPosition="bottom">
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Field Type
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-dropdown id="fieldtype" name="fieldtype" #fieldtype="ngModel" [options]="FieldList"
+                                        [(ngModel)]="model.fieldtype" appendTo="body"
+                                        placeholder="Field Type" optionLabel="name"
+                                        pTooltip="{{model.fieldtype}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Base Table Column
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-dropdown id="tablecolumn" name="tablecolumn" #tablecolumn="ngModel" [options]="basetablecolumnList"
+                                        [(ngModel)]="model.tablecolumn" appendTo="body"
+                                        placeholder="Base Table Column" optionLabel="name"
+                                        pTooltip="{{model.tablecolumn}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Input Type
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-dropdown id="inputtype" name="inputtype" #inputtype="ngModel" [options]="inputTypeList"
+                                        [(ngModel)]="model.inputtype" appendTo="body"
+                                        placeholder="Input Type" optionLabel="name"
+                                        pTooltip="{{model.inputtype}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Data Type
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-dropdown id="datatype" name="datatype" #datatype="ngModel" [options]="dataTypeList"
+                                        [(ngModel)]="model.datatype" appendTo="body"
+                                        placeholder="Data Type" optionLabel="name"
+                                        pTooltip="{{model.datatype}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Java Function Name
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm" id="jfunctionname" name="jfunctionname"
+                                            [(ngModel)]="model.jfunctionname" #jfunctionname="ngModel" placeholder="Java Function Name"
+                                            maxlength="200" pTooltip="{{model.jfunctionname}}"
+                                            tooltipPosition="bottom" >
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Database Function Name
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm" id="databasefuncname" name="databasefuncname"
+                                            [(ngModel)]="model.databasefuncname" #databasefuncname="ngModel" placeholder="Database Function Name"
+                                            maxlength="200" pTooltip="{{model.databasefuncname}}"
+                                            tooltipPosition="bottom" >
+                                       
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label>
+                                        Required
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-dropdown id="required" name="required" #required="ngModel" [options]="booleanList"
+                                        [(ngModel)]="model.required" appendTo="body"
+                                        placeholder="Required" optionLabel="name"
+                                        pTooltip="{{model.required}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Range Low
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control input-sm" id="rangelow" name="rangelow"
+                                            [(ngModel)]="model.rangelow" #rangelow="ngModel" placeholder="Range Low"
+                                            maxlength="200" pTooltip="{{model.rangelow}}"
+                                            tooltipPosition="bottom" >
+                                       
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Range High
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control input-sm" id="rangehigh" name="rangehigh"
+                                            [(ngModel)]="model.rangehigh" #rangehigh="ngModel" placeholder="Range High"
+                                            maxlength="200" pTooltip="{{model.rangehigh}}"
+                                            tooltipPosition="bottom" >
+                                       
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Date Format
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-calendar [style]="{'width':'100%' ,'height':'40px'}"
+                                            [inputStyle]="{'width':'100%' ,'height':'40px'}" [showIcon]="true"
+                                            id="dateformat" name="dateformat" [(ngModel)]="model.dateformat"
+                                            dateFormat="dd-mm-yy" placeholder="dd-mm-yy" [minDate]="minDate"
+                                            pTooltip="{{model.dateformat}}" tooltipPosition="bottom">
+                                        </p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Default Value
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-sm" id="defaultvalue" name="defaultvalue"
+                                            [(ngModel)]="model.defaultvalue" #defaultvalue="ngModel" placeholder="Default Value"
+                                            maxlength="200" pTooltip="{{model.defaultvalue}}"
+                                            tooltipPosition="bottom" >   
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Visible
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <p-dropdown id="visible" name="visible" #visible="ngModel" [options]="booleanList"
+                                        [(ngModel)]="model.visible" appendTo="body"
+                                        placeholder="Visible" optionLabel="name"
+                                        pTooltip="{{model.visible}}"
+                                        tooltipPosition="bottom" filter="true" [showClear]="false">
+                                    </p-dropdown>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Column Number
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control input-sm" id="colno" name="colno"
+                                            [(ngModel)]="model.colno" #colno="ngModel" placeholder="Column Number"
+                                            maxlength="200" pTooltip="{{model.colno}}"
+                                            tooltipPosition="bottom" >
+                                       
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        Row Number
+                                        <span style="color: red;">*</span>
+                                    </label>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control input-sm" id="rowno" name="rowno"
+                                            [(ngModel)]="model.rowno" #rowno="ngModel" placeholder="Row Number"
+                                            maxlength="200" pTooltip="{{model.rowno}}"
+                                            tooltipPosition="bottom" >
+                                       
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <label style="margin-top:18px;"></label>
+                                    <div class="form-group" style="text-align: center;">
+                                        <button pButton pRipple type="button" label="Add" (click)="addModelOneArray()" class="save_button p-button-success"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+    
+            <div class="row" *ngIf="modelOneArray.length !== 0">
+                <div class="col-md-12 ">
+                    <fieldset class="scheduler-border col-md-12">
+                        <legend class="scheduler-border">Screen Mapping Query Details:</legend>
+                        <p-table #dt [value]="modelOneArray" scrollHeight="300px" [scrollable]="true"
+                            [style]="{width:'auto'}"
+                            styleClass="p-datatable-responsive-demo p-datatable-striped custom-class">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr style="font-size: 10px;">
+                                    <th pResizableColumn>Sr.no</th>
+                                    <th pResizableColumn>Screen Field ID</th>
+                                    <th pResizableColumn>Screen ID</th>
+                                    <th pResizableColumn>Screen Group ID</th>
+                                    <th pResizableColumn>Label</th>
+                                    <th pResizableColumn>Field Name</th>
+                                    <th pResizableColumn>Field Type</th>
+                                    <th pResizableColumn>Base Table Column</th>
+                                    <th pResizableColumn>Input Type</th>
+                                    <th pResizableColumn>Data Type</th>
+                                    <th pResizableColumn>Java Function Name</th>
+                                    <th pResizableColumn>Database Function Name</th>
+                                    <th pResizableColumn>Required</th>
+                                    <th pResizableColumn>Range Low</th>
+                                    <th pResizableColumn>Range High</th>
+                                    <th pResizableColumn>Date Format</th>
+                                    <th pResizableColumn>Default Value</th>
+                                    <th pResizableColumn>Visible</th>
+                                    <th pResizableColumn>Column Number</th>
+                                    <th pResizableColumn>Row Number</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-modelOneArray let-i="rowIndex">
+                                <tr *ngIf="modelOneArray.flag !== 'delete'" style="font-size: 10px; font-weight: bold;">
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Sr.no</span>
+                                        {{i+1}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Screen Mapping Query ID</span>
+                                        {{modelOneArray.screenfieldid}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Screen ID</span>
+                                        {{modelOneArray.screenid?.code}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Screen Group ID</span>
+                                        {{modelOneArray.screengroupid?.code}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Label</span>
+                                        {{modelOneArray.label}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Field Name</span>
+                                        {{modelOneArray.field_name}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Field Type</span>
+                                        {{modelOneArray.fieldtype?.code}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Base Table Column</span>
+                                        {{modelOneArray.tablecolumn?.code}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Input Type</span>
+                                        {{modelOneArray.inputtype?.code}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Data Type</span>
+                                        {{modelOneArray.datatype?.code}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Java Function Name</span>
+                                        {{modelOneArray.jfunctionname}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Database Function Name</span>
+                                        {{modelOneArray.databasefuncname}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Required</span>
+                                        {{modelOneArray.required?.code}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Range Low</span>
+                                        {{modelOneArray.rangelow}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Range High</span>
+                                        {{modelOneArray.rangehigh}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Date Format</span>
+                                        {{modelOneArray.dateformat}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Default Value</span>
+                                        {{modelOneArray.defaultvalue}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Visible</span>
+                                        {{modelOneArray.visible?.code}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Column Number</span>
+                                        {{modelOneArray.colno}}
+                                    </td>
+                                    <td>
+                                        <span style="margin-left: 10px;" class="p-column-title">Row Number</span>
+                                        {{modelOneArray.rowno}}
+                                    </td>
+                                    <td>
+                                        <button pButton pRipple icon="pi pi-user-edit"
+                                            class="p-button-rounded p-button-success"
+                                            (click)="viewRowData(modelOneArray,i);" pTooltip="Edit"
+                                            tooltipPosition="bottom">
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button pButton pRipple icon="pi pi-trash"
+                                            class="p-button-rounded p-button-warning p-mr-2" data-toggle="modal"
+                                            (click)="deleteRowData(modelOneArray,i)" pTooltip="Delete"
+                                            tooltipPosition="bottom">
+                                        </button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </fieldset>
+                </div>
+            </div>
+        </span>
+    </form>
+
+
+     <!-- LISTING TABLE -->
+    <div class="row" *ngIf="searchFromFilter === true">
+        <div class="col-md-12 offset-md-0">
+            <fieldset class="scheduler-border col-md-12">
+                <legend class="scheduler-border">Screen Field Master Details:</legend>
+                <p-table #dt [value]="modelList" scrollHeight="300px" [scrollable]="true"
+                    [style]="{width:'auto'}"
+                    styleClass="p-datatable-responsive-demo p-datatable-striped custom-class">
+                    <ng-template pTemplate="caption">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <tr>
+                                        <th pResizableColumn>
+                                            <span class="p-float-label" style="margin-right: 10px;">
+                                                <div class="form-group">
+                                                    <!-- <i class="pi pi-search"></i> -->
+                                                    <input type="text" class="form-control" pInputText id="search"
+                                                        name="search" [(ngModel)]="filters"
+                                                        (input)="searchByFilter()">
+                                                    <label style="margin-left: 20px;" for="search"><span
+                                                            style="font-size: 10px;">Screen Field ID</span></label>
+                                                </div>
+                                            </span>
+                                        </th>
+                                        <th style="margin-top: 2px; margin-left: 12px; position: absolute;" pResizableColumn>
+                                            <button pButton pRipple icon="pi pi-refresh"
+                                                class="p-button-rounded p-button-primary" (click)="filters = ''; searchByFilter()"
+                                                pTooltip="Refresh"
+                                                tooltipPosition="bottom">
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr style="font-size: 10px;">
+                            <th pResizableColumn>Sr.no</th>
+                                <th pResizableColumn>Screen Field ID</th>
+                                <th pResizableColumn>Screen ID</th>
+                                <th pResizableColumn>Screen Group ID</th>
+                                <th pResizableColumn>Label</th>
+                                <th pResizableColumn>Field Name</th>
+                                <th pResizableColumn>Field Type</th>
+                                <th pResizableColumn>Base Table Column</th>
+                                <th pResizableColumn>Input Type</th>
+                                <th pResizableColumn>Data Type</th>
+                                <th pResizableColumn>Java Function Name</th>
+                                <th pResizableColumn>Database Function Name</th>
+                                <th pResizableColumn>Required</th>
+                                <th pResizableColumn>Range Low</th>
+                                <th pResizableColumn>Range High</th>
+                                <th pResizableColumn>Date Format</th>
+                                <th pResizableColumn>Default Value</th>
+                                <th pResizableColumn>Visible</th>
+                                <th pResizableColumn>Column Number</th>
+                                <th pResizableColumn>Row Number</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-modelOneArray let-i="rowIndex">
+                        <tr *ngIf="modelOneArray.flag !== 'delete'" style="font-size: 10px; font-weight: bold;">
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Sr.no</span>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Screen Mapping Query ID</span>
+                                {{modelOneArray.screenfieldid}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Screen ID</span>
+                                {{modelOneArray.screenname}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Screen Group ID</span>
+                                {{modelOneArray.screengroupname}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Label</span>
+                                {{modelOneArray.label}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Field Name</span>
+                                {{modelOneArray.field_name}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Field Type</span>
+                                {{modelOneArray.fieldtype}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Base Table Column</span>
+                                {{modelOneArray.tablecolumn}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Input Type</span>
+                                {{modelOneArray.inputtype}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Data Type</span>
+                                {{modelOneArray.datatype}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Java Function Name</span>
+                                {{modelOneArray.jfunctionname}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Database Function Name</span>
+                                {{modelOneArray.databasefuncname}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Required</span>
+                                {{modelOneArray.required}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Range Low</span>
+                                {{modelOneArray.rangelow}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Range High</span>
+                                {{modelOneArray.rangehigh}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Date Format</span>
+                                {{modelOneArray.dateformat}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Default Value</span>
+                                {{modelOneArray.defaultvalue}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Visible</span>
+                                {{modelOneArray.visible}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Column Number</span>
+                                {{modelOneArray.colno}}
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;" class="p-column-title">Row Number</span>
+                                {{modelOneArray.rowno}}
+                            </td>
+                           
+                            <td>
+                                <button pButton pRipple icon="pi pi-user-edit"
+                                    class="p-button-rounded p-button-success"
+                                    (click)="editRowData(modelOneArray,i); searchFromFilter = false" pTooltip="Edit"
+                                    tooltipPosition="bottom">
+                                </button>
+                            </td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning p-mr-2" data-toggle="modal"
+                                    data-toggle="modal" data-target="#confirmDeleteDialog" (click)="onDelete(modelOneArray,i)" pTooltip="Delete"
+                                    tooltipPosition="bottom">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </fieldset>
+        </div>
+    </div>
+
+
+        <!-- SAVE CANCEL BUTTON -->
+        <div class="container-fluid  bg-white" style="position: fixed;left: -1px;bottom: 32px;">
+            <div class="row" style="background-color: #e4f2ef;">
+                <div class="col-lg-12 mb-2 mt-2" align="right" style="background-color: #e4f2ef;">
+                    <button style="margin-left: 5px;" pButton pRipple type="button" label="Save" (click)="onSave()"
+                        class="cancel_button p-button-success p-ripple p-button p-component" *ngIf="searchFromFilter !== true"></button>
+        
+                    <button style="margin-left: 5px;" pButton pRipple type="button" [label]="searchFromFilter === true ? 'Cancel':'Show All'"  (click)="onCancel()"
+                        class="cancel_button p-button-danger p-ripple p-button p-component"></button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!-- Confirm Delete Dialog    data-toggle="modal" data-target="#confirmDeleteDialog"-->
+<div class="modal fade" id="confirmDeleteDialog" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h6>Do you really want to delete!</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                    (click)="confirmDelete();">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

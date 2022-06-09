@@ -1,0 +1,32 @@
+----------ANGULAR SETUP-------------------------------------------------
+#TO DOWNLOAD NODE
+visit => https://nodejs.org/en/     (download current LTS version)
+
+#TO DOWNLOAD ANGULAR CLI
+npm install -g @angular/cli   
+or visit => https://angular.io/guide/setup-local
+_________________________________________________________________________
+
+
+#TO RUN THIS PROJECT
+1>npm install (one time install)
+2>ng serve
+
+#TO GENERATE WAR FILE
+1>ng build --base-href=/vnit/
+
+
+#TO CREATE COMPONENT
+ng g c component-name   => ex ng g c test
+
+#ADD COMPONENT IN ROUTING 
+src > app > modules > inventory > inventory-routing
+     {
+        path: "test",
+        component: TestComponent,
+     }
+
+
+
+
+ 

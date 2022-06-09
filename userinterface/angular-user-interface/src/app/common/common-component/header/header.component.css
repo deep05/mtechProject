@@ -1,0 +1,218 @@
+.btn-success {
+    color: #fff;
+    background-color: #4CA07A;
+    border-color: #4CA07A;
+}
+
+.btn-outline-success {
+    color: #4CA07A;
+    border-color: #4CA07A;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #4CA07A;
+    border-color: #4CA07A;
+}
+
+.nav-item
+{
+font: normal normal 600 14px/24px Proxima Nova;
+letter-spacing: 1.2px;
+opacity: 1;
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+ color: #009DFF;
+ border-bottom: 2px solid #009DFF;
+}
+
+.navbar-brand.nav_2
+{
+    color: #4CA07A;font-size: 15px
+}
+
+.report{
+text-align: right;
+font: normal normal normal 13px/24px Proxima Nova;
+letter-spacing: 1.4px;
+color: #4CA07A;
+text-transform: uppercase;
+opacity: 1;
+}
+
+#patient_head
+{
+text-align: left;
+font: normal normal bold 12px/24px Proxima Nova;
+letter-spacing: 1.4px;
+color: #4CA07A;
+opacity: 1;
+}
+
+#patient_head tr th{
+     border-top-style:hidden;
+     border-bottom-style:hidden;
+}
+
+.trsize tr td
+{
+    font-size: 11px;
+}
+
+
+.appoint_head tr th
+{
+    text-align: left;
+font: normal normal bold 11px/24px Proxima Nova;
+letter-spacing: 0px;
+color: #044328;
+opacity: 1;
+}
+
+#head_button
+{
+    border: 1px solid #999999;border-radius: 6px;opacity: 1;
+}
+#head_button span
+{
+text-align: center;
+font: normal normal 600 11px Proxima Nova;
+letter-spacing: 0.13px;
+opacity: 1;
+}
+
+.navbar_2
+{
+    background: #EAFAF3 0% 0% no-repeat padding-box;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+    .navbar_2 span.nav_2 {
+    font-size: 10px
+  }
+  .navbar-brand.navbar_2 .nab {
+    font-size: 10px
+  }
+}
+
+.navbar_2 .nab
+{
+    font-size: 22px
+}
+
+.navbar_2_btn
+{
+    text-align: center;
+font: normal normal normal 12px/24px Proxima Nova;
+letter-spacing: 0.13px;
+opacity: 1;
+}
+
+.card{
+    border: 0px solid rgba(0,0,0,.125);border-radius: 12px;
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+.dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+  }
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-scrollbar
+{
+    height: 150px;
+    /* overflow: scroll; */
+    overflow-x: hidden;
+    overflow-Y: scroll;
+
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+    
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+
+:host ::ng-deep .p-dropdown .p-dropdown-trigger {
+    width: 0px;
+}
+
+:host ::ng-deep .p-dropdown {
+    border: 1px solid #ffffff !important;
+}
+
+
+:host ::ng-deep .p-dropdown:not(.p-disabled):hover {
+    border-color: #ffffff !important;
+}
+
+:host ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+    box-shadow: 0 0 0 0.2rem #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+:host ::ng-deep .admin-dropdown .p-dropdown-label{
+    display: none;
+}
+
+:host ::ng-deep .admin-dropdown .p-dropdown{
+    margin-left: 18px;
+}
+
+@media (min-width: 992px){
+    :host ::ng-deep .navbar-expand-lg .navbar-nav {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+}
+
+
